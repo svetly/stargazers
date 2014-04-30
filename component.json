@@ -1,0 +1,23 @@
+{
+  "name": "stargazers",
+  "description": "The best project ever.",
+  "author": "svetly metodiev <svetly@gmail.com>",
+  "repo": "Svetly/stargazers",
+  "version": "0.1.0",
+  "keywords": [
+  ],
+  "dependencies": {
+    "bergie/noflo": "*"
+  },
+  "scripts": [
+    "components/WriteCsv.coffee"
+  ],
+  "json": [
+    "component.json"
+  ],
+  "noflo": {
+    "components": {
+      "WriteCsv": "components/WriteCsv.coffee"
+    }
+  }
+}

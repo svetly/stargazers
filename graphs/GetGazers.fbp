@@ -1,0 +1,25 @@
+# GitHub API token from https://github.com/settings/applications
+'f2b1ccbf88d65ed7d7b53a1b8658d08aca2cd782' -> IN SplitToken(Split)
+SplitToken() OUT -> TOKEN GetStars(github/GetStargazers)
+SplitToken() OUT -> TOKEN GetUser(github/GetUser)
+
+# Send the repo name
+'noflo/noflo' -> REPOSITORY GetStars()
+GetStars() ERROR -> IN Drop(Drop)
+
+# Read username from a stargazer
+'login' -> KEY GetUsername(GetObjectKey)
+GetStars() OUT -> IN GetUsername()
+
+# Read full user from GitHub
+GetUsername() OUT -> USER GetUser()
+GetUser() ERROR -> IN DropUser(Drop)
+
+# Filter unnecessary data
+'email' -> ACCEPT Filter(FilterProperty)
+'name' -> ACCEPT Filter()
+'company' -> ACCEPT Filter()
+GetUser() OUT -> IN Filter()
+# Here we would normally convert to CSV and save
+Filter() OUT -> IN ToCsv(stargazers/WriteCsv)
+ToCsv() OUT -> IN Display(Output)

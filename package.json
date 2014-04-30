@@ -1,0 +1,40 @@
+{
+  "name": "stargazers",
+  "description": "The best project ever.",
+  "version": "0.1.0",
+  "author": {
+    "name": "svetly metodiev",
+    "email": "svetly@gmail.com"
+  },
+  "noflo": {
+    "components": {
+      "WriteCsv": "./components/WriteCsv.coffee"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Svetly/stargazers.git"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "undefined/blob/master/LICENSE-MIT"
+    }
+  ],
+  "dependencies": {
+    "noflo": "^0.3.4",
+    "noflo-core": "^0.1.5",
+    "noflo-github": "0.0.4",
+    "noflo-nodejs": "0.0.4"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-cli": "~0.1.7",
+    "grunt-coffeelint": "~0.0.6",
+    "grunt-cafe-mocha": "~0.1.2",
+    "chai": "~1.5.0",
+    "mocha": "~1.9.0",
+    "grunt-contrib-watch": "~0.3.1"
+  },
+  "keywords": []
+}
