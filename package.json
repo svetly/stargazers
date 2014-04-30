@@ -1,7 +1,7 @@
 {
   "name": "stargazers",
   "description": "The best project ever.",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": {
     "name": "svetly metodiev",
     "email": "svetly@gmail.com"
@@ -22,7 +22,7 @@
     }
   ],
   "dependencies": {
-    "noflo": "^0.3.4",
+    "noflo": "^0.5.x",
     "noflo-core": "^0.1.5",
     "noflo-github": "0.0.4",
     "noflo-nodejs": "0.0.4"
