@@ -1,0 +1,220 @@
+{
+    "properties": {
+        "project": "stargazers",
+        "id": "GetGazers",
+        "environment": {
+            "type": "noflo-browser"
+        }
+    },
+    "inports": {},
+    "outports": {},
+    "groups": [],
+    "processes": {
+        "SplitToken": {
+            "component": "Split",
+            "metadata": {
+                "x": -432,
+                "y": 108,
+                "label": "SplitToken"
+            }
+        },
+        "GetStars": {
+            "component": "github/GetStargazers",
+            "metadata": {
+                "x": -396,
+                "y": -180,
+                "label": "GetStars"
+            }
+        },
+        "GetUser": {
+            "component": "github/GetUser",
+            "metadata": {
+                "x": 72,
+                "y": 108,
+                "label": "GetUser"
+            }
+        },
+        "Drop": {
+            "component": "Drop",
+            "metadata": {
+                "x": -144,
+                "y": -72,
+                "label": "Drop"
+            }
+        },
+        "GetUsername": {
+            "component": "GetObjectKey",
+            "metadata": {
+                "x": -108,
+                "y": -324,
+                "label": "GetUsername"
+            }
+        },
+        "DropUser": {
+            "component": "Drop",
+            "metadata": {
+                "x": 180,
+                "y": 324,
+                "label": "DropUser"
+            }
+        },
+        "Filter": {
+            "component": "FilterProperty",
+            "metadata": {
+                "x": 324,
+                "y": 72,
+                "label": "Filter"
+            }
+        },
+        "ToCsv": {
+            "component": "stargazers/WriteCsv",
+            "metadata": {
+                "x": 540,
+                "y": 72,
+                "label": "ToCsv"
+            }
+        },
+        "Display": {
+            "component": "Output",
+            "metadata": {
+                "x": 684,
+                "y": 72,
+                "label": "Display"
+            }
+        }
+    },
+    "connections": [
+        {
+            "src": {
+                "process": "SplitToken",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "GetStars",
+                "port": "token"
+            }
+        },
+        {
+            "src": {
+                "process": "SplitToken",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "GetUser",
+                "port": "token"
+            }
+        },
+        {
+            "src": {
+                "process": "GetStars",
+                "port": "error"
+            },
+            "tgt": {
+                "process": "Drop",
+                "port": "in"
+            }
+        },
+        {
+            "src": {
+                "process": "GetStars",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "GetUsername",
+                "port": "in"
+            }
+        },
+        {
+            "src": {
+                "process": "GetUsername",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "GetUser",
+                "port": "user"
+            }
+        },
+        {
+            "src": {
+                "process": "GetUser",
+                "port": "error"
+            },
+            "tgt": {
+                "process": "DropUser",
+                "port": "in"
+            }
+        },
+        {
+            "src": {
+                "process": "GetUser",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "Filter",
+                "port": "in"
+            }
+        },
+        {
+            "src": {
+                "process": "Filter",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "ToCsv",
+                "port": "in"
+            }
+        },
+        {
+            "src": {
+                "process": "ToCsv",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "Display",
+                "port": "in"
+            }
+        },
+        {
+            "data": "f2b1ccbf88d65ed7d7b53a1b8658d08aca2cd782",
+            "tgt": {
+                "process": "SplitToken",
+                "port": "in"
+            }
+        },
+        {
+            "data": "noflo/noflo",
+            "tgt": {
+                "process": "GetStars",
+                "port": "repository"
+            }
+        },
+        {
+            "data": "login",
+            "tgt": {
+                "process": "GetUsername",
+                "port": "key"
+            }
+        },
+        {
+            "data": "email",
+            "tgt": {
+                "process": "Filter",
+                "port": "accept"
+            }
+        },
+        {
+            "data": "name",
+            "tgt": {
+                "process": "Filter",
+                "port": "accept"
+            }
+        },
+        {
+            "data": "company",
+            "tgt": {
+                "process": "Filter",
+                "port": "accept"
+            }
+        }
+    ]
+}
